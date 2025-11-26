@@ -7,92 +7,72 @@ from datetime import datetime
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-def extract_temporal_features(df: pd.DataFrame) -> pd.DataFrame:
-    """Extract time-based features"""
-    if 'date' in df.columns:
-        df['date'] = pd.to_datetime(df['date'])
-        df['day_of_week'] = df['date'].dt.dayofweek
-        df['month'] = df['date'].dt.month
-        df['quarter'] = df['date'].dt.quarter
-        df['is_weekend'] = df['day_of_week'].isin([5, 6]).astype(int)
+def assign_sentiment(rating: int) -> str:
+    """Map numeric reviewRatings into simple sentiment labels."""
+    
+    sentiment_map = {
+        5: "excellent",
+        4: "positive",
+        3: "neutral",
+        2: "negative",
+        1: "terrible"
+    }
+    
+    return sentiment_map.get(rating, "unknown")
+
+def compute_restaurant_avg(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Compute average reviewRatings for each restaurant (placeName).
+    Adds a new column: restaurant_avg_rating
+    """
+
+    if "placeName" not in df.columns:
+        raise ValueError("Missing required column: placeName")
+
+    if "reviewRating" not in df.columns:
+        raise ValueError("Missing required column: reviewRating")
+
+    # Use groupby → hash map under the hood for speed
+    avg_map = df.groupby("placeName")["reviewRating"].mean().to_dict()
+
+    # Assign back to dataframe
+    df["restaurant_avg_rating"] = df["placeName"].map(avg_map)
+
     return df
 
-def extract_sentiment_features(df: pd.DataFrame) -> pd.DataFrame:
-    """Extract sentiment-related features"""
-    # Sentiment indicators based on rating
-    df['is_positive'] = (df['rating'] >= 4).astype(int)
-    df['is_negative'] = (df['rating'] <= 2).astype(int)
-    df['is_neutral'] = (df['rating'] == 3).astype(int)
-    
-    # Text-based sentiment indicators
-    positive_words = ['great', 'excellent', 'amazing', 'wonderful', 'fantastic', 'love', 'best']
-    negative_words = ['terrible', 'awful', 'horrible', 'worst', 'hate', 'disappointing', 'poor']
-    
-    df['positive_word_count'] = df['cleaned_text'].apply(
-        lambda x: sum(word in x.lower() for word in positive_words)
-    )
-    df['negative_word_count'] = df['cleaned_text'].apply(
-        lambda x: sum(word in x.lower() for word in negative_words)
-    )
-    
-    # Sentiment score
-    df['sentiment_score'] = df['positive_word_count'] - df['negative_word_count']
-    
-    return df
+def create_features(
+    input_path: str = "E:/Masters/MLOps/echo-ai/data/processed/clean_reviews_apify.csv",
+    output_path: str = "E:/Masters/MLOps/echo-ai/data/processed/features_apify.csv"
+) -> pd.DataFrame:
 
-def extract_business_features(df: pd.DataFrame) -> pd.DataFrame:
-    """Extract business-related features"""
-    if 'business_id' in df.columns:
-        # Calculate business-level statistics
-        business_stats = df.groupby('business_id').agg({
-            'rating': ['mean', 'std', 'count'],
-            'useful_votes': 'sum'
-        }).reset_index()
-        
-        business_stats.columns = ['business_id', 'business_avg_rating', 
-                                 'business_rating_std', 'business_review_count',
-                                 'business_total_useful_votes']
-        
-        # Merge back to main dataframe
-        df = df.merge(business_stats, on='business_id', how='left')
-    
-    return df
-
-def create_features(input_path: str = 'data/processed/clean_reviews.csv',
-                   output_path: str = 'data/processed/features.csv') -> pd.DataFrame:
-    """Main feature engineering pipeline"""
     try:
-        # Load preprocessed data
-        logger.info(f"Loading preprocessed data from {input_path}")
+        logger.info(f"Loading data from {input_path}")
         df = pd.read_csv(input_path)
-        
-        # Extract features
-        logger.info("Extracting temporal features...")
-        df = extract_temporal_features(df)
-        
-        logger.info("Extracting sentiment features...")
-        df = extract_sentiment_features(df)
-        
-        logger.info("Extracting business features...")
-        df = extract_business_features(df)
-        
-        # Create interaction features
-        df['rating_length_interaction'] = df['rating'] * df['text_length']
-        df['votes_to_length_ratio'] = df['useful_votes'] / (df['text_length'] + 1)
-        
-        # Save features
+
+        logger.info("Computing text length...")
+        df["text_length"] = df["reviewText"].astype(str).apply(len)
+
+        # Sentiment feature
+        logger.info("Assigning sentiment categories...")
+        df["sentiment"] = df["reviewRating"].apply(assign_sentiment)
+
+        # Restaurant-level average rating
+        logger.info("Computing restaurant average ratings...")
+        df = compute_restaurant_avg(df)
+
+        # Save
         df.to_csv(output_path, index=False)
-        logger.info(f"Saved {len(df)} records with {len(df.columns)} features to {output_path}")
-        
-        # Log feature statistics
-        logger.info(f"Feature dimensions: {df.shape}")
-        logger.info(f"New features created: {len(df.columns) - 15}")  # Assuming ~15 original columns
-        
+        logger.info(
+            f"Saved feature-enhanced data ({len(df)} rows, {len(df.columns)} columns) → {output_path}"
+        )
+
         return df
-        
+
     except Exception as e:
         logger.error(f"Feature engineering failed: {e}")
         raise
 
+
 if __name__ == "__main__":
     create_features()
+

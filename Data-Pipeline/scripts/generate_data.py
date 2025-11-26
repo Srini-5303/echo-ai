@@ -10,7 +10,8 @@ def generate_synthetic_reviews(n=5000):
     templates = {
         5: ["Absolutely amazing {item}! The {aspect} was excellent.",
             "Best experience ever. Highly recommend!",
-            "Perfect in every way. Outstanding service."],
+            "Perfect in every way. Outstanding service."
+            "Great {item}, will return!"],
         4: ["Really good {item}. The {aspect} was great.",
             "Very satisfied. Would come again.",
             "Good experience overall."],
@@ -30,7 +31,7 @@ def generate_synthetic_reviews(n=5000):
     categories = ['Restaurant', 'Hotel', 'Retail', 'Healthcare', 'Automotive']
     
     reviews = []
-    rating_distribution = [1, 1, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 5]
+    rating_distribution = [1, 2, 3, 4, 5]
     
     for i in range(n):
         rating = random.choice(rating_distribution)
@@ -43,21 +44,18 @@ def generate_synthetic_reviews(n=5000):
         
         review_date = datetime.now() - timedelta(days=random.randint(0, 365))
         
+        place_name = ['Boston House of Pizza', 'University House of Pizza', 'Olympic House of Pizza','The Halal Guys','Daves Hot Chicken','Wendys','Eataly','Taco Bell','Boston Burgur Company','Amorino', 'El Jefe Taqueria', 'Raising Canes', 'Dunkin Donuts', 'Subway']
+
+        author_names = ['John1836', 'Jane22', 'Alice', 'Bob29027', 'Charlie0101', 'Smith10', 'Emily510', 'David_88']
+
         reviews.append({
-            'review_id': f'R{i:06d}',
-            'business_id': f'B{random.randint(1, 100):04d}',
-            'user_id': f'U{random.randint(1, 1000):05d}',
-            'text': text,
-            'rating': rating,
-            'date': review_date.strftime('%Y-%m-%d'),
-            'useful_votes': np.random.poisson(2),
-            'funny_votes': np.random.poisson(0.5),
-            'cool_votes': np.random.poisson(1),
-            'text_length': len(text),
-            'business_category': random.choice(categories),
-            'has_owner_response': random.random() > 0.7,
-            'platform': random.choice(['Google', 'Yelp', 'Facebook']),
-            'sentiment_label': 'positive' if rating >= 4 else 'negative' if rating <= 2 else 'neutral'
+            'placeName' : random.choice(place_name),    
+            'placeAddress': "Boston, MA",
+            'provider': "SyntheticData",
+            'reviewText': text,
+            'reviewDate': review_date.strftime('%Y-%m-%d'),
+            'reviewRating': rating,
+            'authorName': random.choice(author_names),
         })
     
     df = pd.DataFrame(reviews)
@@ -68,12 +66,12 @@ def generate_synthetic_reviews(n=5000):
     
     return df
 
-def save_data(df, filepath='data/raw/synthetic_reviews.csv'):
+def save_data(df, filepath='E:/Masters/MLOps/echo-ai/data/raw/synthetic_reviews.csv'):
     """Save generated data"""
     os.makedirs(os.path.dirname(filepath), exist_ok=True)
     df.to_csv(filepath, index=False)
-    print(f"✓ Generated {len(df)} reviews")
-    print(f"✓ Saved to: {filepath}")
+    print(f"Generated {len(df)} reviews")
+    print(f"Saved to: {filepath}")
 
 if __name__ == "__main__":
     df = generate_synthetic_reviews(5000)
