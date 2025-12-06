@@ -1,0 +1,14 @@
+artifact_uri: file:///E:/Masters/MLOps/echo-ai/mlruns/136823257234928231/2472bd953a8e4aaa98bf7ab5c3a2c44e/artifacts
+end_time: 1764976354072
+entry_point_name: ''
+experiment_id: '136823257234928231'
+lifecycle_stage: active
+run_id: 2472bd953a8e4aaa98bf7ab5c3a2c44e
+run_name: honorable-wasp-424
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1764976354014
+status: 3
+tags: []
+user_id: hp

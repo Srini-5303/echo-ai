@@ -1,0 +1,14 @@
+artifact_uri: file:///E:/Masters/MLOps/echo-ai/mlruns/136823257234928231/8193c676751e4b0e88e091b821543da4/artifacts
+end_time: 1764896250551
+entry_point_name: ''
+experiment_id: '136823257234928231'
+lifecycle_stage: active
+run_id: 8193c676751e4b0e88e091b821543da4
+run_name: peaceful-shrimp-446
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1764896250487
+status: 3
+tags: []
+user_id: hp

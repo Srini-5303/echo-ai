@@ -1,0 +1,14 @@
+artifact_uri: file:///E:/Masters/MLOps/echo-ai/mlruns/136823257234928231/8e1dd8c57c474fe2886ae7149798ff3c/artifacts
+end_time: 1764976349069
+entry_point_name: ''
+experiment_id: '136823257234928231'
+lifecycle_stage: active
+run_id: 8e1dd8c57c474fe2886ae7149798ff3c
+run_name: stylish-mink-892
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1764976348979
+status: 3
+tags: []
+user_id: hp

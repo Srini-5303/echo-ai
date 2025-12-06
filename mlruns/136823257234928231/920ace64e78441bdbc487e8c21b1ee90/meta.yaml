@@ -1,0 +1,14 @@
+artifact_uri: file:///E:/Masters/MLOps/echo-ai/mlruns/136823257234928231/920ace64e78441bdbc487e8c21b1ee90/artifacts
+end_time: 1764976352168
+entry_point_name: ''
+experiment_id: '136823257234928231'
+lifecycle_stage: active
+run_id: 920ace64e78441bdbc487e8c21b1ee90
+run_name: industrious-croc-800
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1764976352104
+status: 3
+tags: []
+user_id: hp

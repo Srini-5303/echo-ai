@@ -1,0 +1,10 @@
+artifact_location: file:///E:/Masters/MLOps/echo-ai/mlruns/703072018571413181/models/m-8f2813c6178847e4ba648684e0a41642/artifacts
+creation_timestamp: 1764870797063
+experiment_id: '703072018571413181'
+last_updated_timestamp: 1764870800469
+model_id: m-8f2813c6178847e4ba648684e0a41642
+model_type: null
+name: RandomForest
+source_run_id: 4a5bbf336bcd4268b7df460ae2310771
+status: 2
+status_message: null

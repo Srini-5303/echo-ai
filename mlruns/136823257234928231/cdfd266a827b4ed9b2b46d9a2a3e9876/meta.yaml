@@ -1,0 +1,14 @@
+artifact_uri: file:///E:/Masters/MLOps/echo-ai/mlruns/136823257234928231/cdfd266a827b4ed9b2b46d9a2a3e9876/artifacts
+end_time: 1764976356388
+entry_point_name: ''
+experiment_id: '136823257234928231'
+lifecycle_stage: active
+run_id: cdfd266a827b4ed9b2b46d9a2a3e9876
+run_name: MultinomialNB_tuning
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1764976346898
+status: 3
+tags: []
+user_id: hp

@@ -1,0 +1,10 @@
+{
+  "model_type": "MultinomialNB",
+  "baseline_f1_score": 0.8211211892164273,
+  "tuned_f1_score": 0.7995856821354639,
+  "improvement": -0.021535507080963412,
+  "best_params": {
+    "alpha": 0.4090889218308341
+  },
+  "model_path": "None"
+}

@@ -190,74 +190,101 @@ class ResponseGenerator:
             logger.error(f"Error loading model: {e}")
             raise
     
-    def create_prompt(self, review_text: str, sentiment: str, 
-                     business_category: str = None, rating: int = None) -> str:
+    def create_prompt(self, reviewText: str, sentiment: str, 
+                     placeName: str = None, placeAddress: str = None,
+                     provider: str = None, reviewRating: float = None,
+                     authorName: str = None) -> str:
         """
         Create a prompt for the LLM based on review and sentiment
         
         Args:
-            review_text: The customer review
-            sentiment: Predicted sentiment (positive/neutral/negative)
-            business_category: Type of business (Restaurant/Hotel/Retail)
-            rating: Customer rating (1-5)
+            reviewText: The customer review text
+            sentiment: Predicted sentiment (amazing/positive/neutral/negative/terrible)
+            placeName: Name of the place being reviewed
+            placeAddress: Address of the place
+            provider: Review platform provider
+            reviewRating: Customer rating
+            authorName: Name of the reviewer
         """
         # Build context
         context_parts = []
         
-        if business_category:
-            context_parts.append(f"Business Type: {business_category}")
-        if rating:
-            context_parts.append(f"Customer Rating: {rating}/5")
+        if placeName:
+            context_parts.append(f"Place: {placeName}")
+        if placeAddress:
+            context_parts.append(f"Location: {placeAddress}")
+        if provider:
+            context_parts.append(f"Platform: {provider}")
+        if reviewRating:
+            context_parts.append(f"Rating: {reviewRating}")
         context_parts.append(f"Sentiment: {sentiment}")
         
         context = " | ".join(context_parts)
+        
+        # Determine sentiment instructions
+        if sentiment.lower() == 'amazing':
+            sentiment_instruction = "Express deep gratitude and enthusiasm, celebrate their exceptional experience"
+        elif sentiment.lower() == 'positive':
+            sentiment_instruction = "Express gratitude and reinforce positive aspects"
+        elif sentiment.lower() == 'neutral':
+            sentiment_instruction = "Thank them and show commitment to improvement"
+        elif sentiment.lower() == 'negative':
+            sentiment_instruction = "Apologize sincerely and offer to resolve issues"
+        else:  # terrible
+            sentiment_instruction = "Apologize profusely, take full responsibility, and urgently offer resolution"
         
         # Create prompt based on model type
         if 'flan' in self.model_name.lower():
             # Flan-T5 style prompt
             prompt = f"""Generate a professional business response to this customer review.
 Context: {context}
-Review: "{review_text}"
+{'Reviewer: ' + authorName if authorName else ''}
+Review: "{reviewText}"
 Instructions: Write a personalized, empathetic response that:
 1. Acknowledges the customer's feedback
-2. {"Expresses gratitude and reinforces positive aspects" if sentiment == 'positive' 
-   else "Apologizes and offers to resolve issues" if sentiment == 'negative'
-   else "Thanks them and shows commitment to improvement"}
+2. {sentiment_instruction}
 3. Is concise (2-3 sentences) and professional
 Response:"""
         
         elif 'mistral' in self.model_name.lower():
             # Mistral instruction format
-            prompt = f"""[INST] You are a professional customer service representative responding to reviews.
+            prompt = f"""[INST] You are a professional customer service representative responding to reviews for {placeName if placeName else 'our business'}.
 Context: {context}
-Customer Review: "{review_text}"
+{'Customer Name: ' + authorName if authorName else ''}
+Customer Review: "{reviewText}"
 Generate a professional, empathetic response that is 2-3 sentences long. 
-{"Express gratitude and encourage repeat business." if sentiment == 'positive'
-  else "Apologize sincerely and offer to resolve the issue." if sentiment == 'negative'
-  else "Thank them for feedback and show commitment to improvement."}[/INST]"""
+{sentiment_instruction}[/INST]"""
         
         else:
             # Generic format
             prompt = f"""Business Response Generator
 {context}
-Customer Review: {review_text}
+{'Reviewer: ' + authorName if authorName else ''}
+Customer Review: {reviewText}
 Professional Response:"""
         
         return prompt
+
     
-    def generate_response(self, review_text: str, sentiment: str,
-                         business_category: str = None, rating: int = None,
-                         use_template: bool = True,
-                         max_length: int = 150,
-                         temperature: float = 0.7) -> str:
+    def generate_response(self, reviewText: str, sentiment: str,
+                            placeName: str = None, placeAddress: str = None,
+                            provider: str = None, reviewRating: float = None,
+                            authorName: str = None, reviewDate: str = None,
+                            use_template: bool = True,
+                            max_length: int = 150,
+                            temperature: float = 0.7) -> str:
         """
         Generate a response to a review
         
         Args:
-            review_text: The customer review
-            sentiment: Predicted sentiment
-            business_category: Type of business
-            rating: Customer rating
+            reviewText: The customer review text
+            sentiment: Predicted sentiment (amazing/positive/neutral/negative/terrible)
+            placeName: Name of the place
+            placeAddress: Address of the place
+            provider: Review platform
+            reviewRating: Customer rating
+            authorName: Reviewer name
+            reviewDate: Date of review
             use_template: Whether to use response templates
             max_length: Maximum response length
             temperature: Generation temperature (0-1, higher = more creative)
@@ -265,8 +292,12 @@ Professional Response:"""
         if not self.generator:
             raise ValueError("Model not loaded. Call load_model() first.")
         
+        # Normalize sentiment to lowercase for consistency
+        sentiment = sentiment.lower()
+        
         # Create prompt
-        prompt = self.create_prompt(review_text, sentiment, business_category, rating)
+        prompt = self.create_prompt(reviewText, sentiment, placeName, 
+                                   placeAddress, provider, reviewRating, authorName)
         
         try:
             # Generate response
@@ -349,9 +380,11 @@ Professional Response:"""
         import random
         
         fallback_responses = {
+            'amazing': "We are absolutely thrilled by your amazing review! Your incredible feedback means everything to us, and we can't wait to exceed your expectations again.",
             'positive': "Thank you for your wonderful review! We're delighted to hear about your positive experience and look forward to serving you again soon.",
             'neutral': "Thank you for taking the time to share your feedback. We value your input and continuously strive to improve our service.",
-            'negative': "We sincerely apologize for your disappointing experience. Please contact us directly so we can address your concerns and make things right."
+            'negative': "We sincerely apologize for your disappointing experience. Please contact us directly so we can address your concerns and make things right.",
+            'terrible': "We are deeply sorry for the completely unacceptable experience you had. Please contact our management immediately so we can resolve this urgently."
         }
         
         return fallback_responses.get(sentiment, fallback_responses['neutral'])
@@ -361,7 +394,7 @@ Professional Response:"""
         Generate responses for multiple reviews
         
         Args:
-            reviews: List of dicts with 'text', 'sentiment', etc.
+            reviews: List of dicts with review features
             batch_size: Number of reviews to process at once
         """
         responses = []
@@ -371,10 +404,14 @@ Professional Response:"""
             
             for review in batch:
                 response = self.generate_response(
-                    review.get('text', ''),
+                    review.get('reviewText', ''),
                     review.get('sentiment', 'neutral'),
-                    review.get('business_category'),
-                    review.get('rating')
+                    review.get('placeName'),
+                    review.get('placeAddress'),
+                    review.get('provider'),
+                    review.get('reviewRating'),
+                    review.get('authorName'),
+                    review.get('reviewDate')
                 )
                 responses.append(response)
         
@@ -396,25 +433,57 @@ Professional Response:"""
 def test_response_generator():
     """Test the response generator with sample reviews"""
     
-    # Sample reviews with different sentiments
+    # Sample reviews with different sentiments using your features
     test_reviews = [
         {
-            'text': "The food was absolutely amazing and the service was outstanding!",
+            'reviewText': "This place exceeded all my expectations! Absolutely phenomenal service and quality!",
+            'sentiment': 'amazing',
+            'placeName': 'The Grand Restaurant',
+            'placeAddress': '123 Main St, Boston, MA',
+            'provider': 'Google',
+            'reviewRating': 5.0,
+            'authorName': 'John Smith',
+            'reviewDate': '2024-01-15'
+        },
+        {
+            'reviewText': "The food was absolutely delicious and the service was outstanding!",
             'sentiment': 'positive',
-            'business_category': 'Restaurant',
-            'rating': 5
+            'placeName': 'Bella Italia',
+            'placeAddress': '456 Oak Ave, Boston, MA',
+            'provider': 'Yelp',
+            'reviewRating': 4.5,
+            'authorName': 'Sarah Johnson',
+            'reviewDate': '2024-01-14'
         },
         {
-            'text': "The room was okay but nothing special. Average experience overall.",
+            'reviewText': "The place was okay but nothing special. Average experience overall.",
             'sentiment': 'neutral',
-            'business_category': 'Hotel',
-            'rating': 3
+            'placeName': 'City Hotel',
+            'placeAddress': '789 Park Rd, Boston, MA',
+            'provider': 'TripAdvisor',
+            'reviewRating': 3.0,
+            'authorName': 'Mike Wilson',
+            'reviewDate': '2024-01-13'
         },
         {
-            'text': "Terrible service, cold food, and overpriced. Very disappointed.",
+            'reviewText': "Service was slow and the food was cold. Very disappointed.",
             'sentiment': 'negative',
-            'business_category': 'Restaurant',
-            'rating': 1
+            'placeName': 'Quick Bites',
+            'placeAddress': '321 Elm St, Boston, MA',
+            'provider': 'Google',
+            'reviewRating': 2.0,
+            'authorName': 'Lisa Brown',
+            'reviewDate': '2024-01-12'
+        },
+        {
+            'reviewText': "Worst experience ever! Rude staff, dirty place, and horrible food. Never coming back!",
+            'sentiment': 'terrible',
+            'placeName': 'Corner Cafe',
+            'placeAddress': '654 Pine Ave, Boston, MA',
+            'provider': 'Yelp',
+            'reviewRating': 1.0,
+            'authorName': 'Robert Davis',
+            'reviewDate': '2024-01-11'
         }
     ]
     
@@ -428,19 +497,26 @@ def test_response_generator():
     print("="*60)
     
     for review in test_reviews:
-        print(f"\n📝 Review: {review['text']}")
-        print(f"😊 Sentiment: {review['sentiment']}")
-        print(f"⭐ Rating: {review['rating']}/5")
-        print(f"🏢 Category: {review['business_category']}")
+        print(f"\n Place: {review['placeName']}")
+        print(f" Review: {review['reviewText']}")
+        print(f" Sentiment: {review['sentiment']}")
+        print(f" Rating: {review['reviewRating']}")
+        print(f" Author: {review['authorName']}")
+        print(f" Date: {review['reviewDate']}")
+        print(f" Provider: {review['provider']}")
         
         response = generator.generate_response(
-            review['text'],
-            review['sentiment'],
-            review['business_category'],
-            review['rating']
+            reviewText=review['reviewText'],
+            sentiment=review['sentiment'],
+            placeName=review['placeName'],
+            placeAddress=review['placeAddress'],
+            provider=review['provider'],
+            reviewRating=review['reviewRating'],
+            authorName=review['authorName'],
+            reviewDate=review['reviewDate']
         )
         
-        print(f"💬 Generated Response: {response}")
+        print(f" Generated Response: {response}")
         print("-"*60)
 
 if __name__ == "__main__":

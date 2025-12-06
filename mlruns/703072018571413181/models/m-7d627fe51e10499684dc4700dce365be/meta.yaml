@@ -1,0 +1,10 @@
+artifact_location: file:///E:/Masters/MLOps/echo-ai/mlruns/703072018571413181/models/m-7d627fe51e10499684dc4700dce365be/artifacts
+creation_timestamp: 1764870785080
+experiment_id: '703072018571413181'
+last_updated_timestamp: 1764870795709
+model_id: m-7d627fe51e10499684dc4700dce365be
+model_type: null
+name: LogisticRegression
+source_run_id: 5e3a8cb93bbd45d397c0a49653fcbfd9
+status: 2
+status_message: null

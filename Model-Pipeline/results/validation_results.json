@@ -1,79 +1,172 @@
 {
   "metrics": {
-    "accuracy": 1.0,
-    "negative_precision": 1.0,
-    "negative_recall": 1.0,
-    "negative_f1": 1.0,
-    "negative_support": 256,
-    "neutral_precision": 1.0,
-    "neutral_recall": 1.0,
-    "neutral_f1": 1.0,
-    "neutral_support": 175,
-    "positive_precision": 1.0,
-    "positive_recall": 1.0,
-    "positive_f1": 1.0,
-    "positive_support": 559,
-    "weighted_precision": 1.0,
-    "weighted_recall": 1.0,
-    "weighted_f1": 1.0,
-    "macro_precision": 1.0,
-    "macro_recall": 1.0,
-    "macro_f1": 1.0,
-    "negative_auc": 1.0,
-    "neutral_auc": 1.0,
-    "positive_auc": 1.0,
-    "macro_auc": 1.0,
-    "weighted_auc": 1.0
+    "accuracy": 0.7799043062200957,
+    "Amazing_precision": 0.56,
+    "Amazing_recall": 0.56,
+    "Amazing_f1": 0.56,
+    "Amazing_support": 25,
+    "Positive_precision": 1.0,
+    "Positive_recall": 0.16666666666666666,
+    "Positive_f1": 0.2857142857142857,
+    "Positive_support": 6,
+    "Neutral_precision": 1.0,
+    "Neutral_recall": 0.35714285714285715,
+    "Neutral_f1": 0.5263157894736842,
+    "Neutral_support": 14,
+    "Negative_precision": 0.65,
+    "Negative_recall": 0.4642857142857143,
+    "Negative_f1": 0.5416666666666667,
+    "Negative_support": 28,
+    "Terrible_precision": 0.8227848101265823,
+    "Terrible_recall": 0.9558823529411765,
+    "Terrible_f1": 0.8843537414965986,
+    "Terrible_support": 136,
+    "weighted_precision": 0.7851614075464842,
+    "weighted_recall": 0.7799043062200957,
+    "weighted_f1": 0.7584759917565617,
+    "macro_precision": 0.8065569620253165,
+    "macro_recall": 0.500795518207283,
+    "macro_f1": 0.5596100966702471,
+    "Amazing_auc": 0.9547826086956521,
+    "Positive_auc": 0.8472906403940886,
+    "Neutral_auc": 0.9157509157509157,
+    "Negative_auc": 0.8372138910812944,
+    "Terrible_auc": 0.9327155519742143,
+    "macro_auc": 0.897550721579233,
+    "weighted_auc": 0.9189718942537705
   },
   "classification_report": {
-    "negative": {
-      "precision": 1.0,
-      "recall": 1.0,
-      "f1-score": 1.0,
-      "support": 256.0
+    "Amazing": {
+      "precision": 0.56,
+      "recall": 0.56,
+      "f1-score": 0.56,
+      "support": 25.0
     },
-    "neutral": {
+    "Positive": {
       "precision": 1.0,
-      "recall": 1.0,
-      "f1-score": 1.0,
-      "support": 175.0
+      "recall": 0.16666666666666666,
+      "f1-score": 0.2857142857142857,
+      "support": 6.0
     },
-    "positive": {
+    "Neutral": {
       "precision": 1.0,
-      "recall": 1.0,
-      "f1-score": 1.0,
-      "support": 559.0
+      "recall": 0.35714285714285715,
+      "f1-score": 0.5263157894736842,
+      "support": 14.0
     },
-    "accuracy": 1.0,
+    "Negative": {
+      "precision": 0.65,
+      "recall": 0.4642857142857143,
+      "f1-score": 0.5416666666666667,
+      "support": 28.0
+    },
+    "Terrible": {
+      "precision": 0.8227848101265823,
+      "recall": 0.9558823529411765,
+      "f1-score": 0.8843537414965986,
+      "support": 136.0
+    },
+    "accuracy": 0.7799043062200957,
     "macro avg": {
-      "precision": 1.0,
-      "recall": 1.0,
-      "f1-score": 1.0,
-      "support": 990.0
+      "precision": 0.8065569620253165,
+      "recall": 0.500795518207283,
+      "f1-score": 0.5596100966702471,
+      "support": 209.0
     },
     "weighted avg": {
-      "precision": 1.0,
-      "recall": 1.0,
-      "f1-score": 1.0,
-      "support": 990.0
+      "precision": 0.7851614075464842,
+      "recall": 0.7799043062200957,
+      "f1-score": 0.7584759917565617,
+      "support": 209.0
     }
   },
   "confusion_matrix": [
     [
-      256,
+      14,
       0,
-      0
+      0,
+      0,
+      11
     ],
     [
+      2,
+      1,
       0,
-      175,
-      0
+      2,
+      1
     ],
     [
+      3,
+      0,
+      5,
+      1,
+      5
+    ],
+    [
+      4,
       0,
       0,
-      559
+      13,
+      11
+    ],
+    [
+      2,
+      0,
+      0,
+      4,
+      130
     ]
   ],
-  "error_samples": []
+  "errors": [
+    {
+      "text": "gets very busy, but they are quick too. youll get to know your way around the crowd once youve been here a couple of times....",
+      "true_label": "Terrible",
+      "predicted_label": "Negative"
+    },
+    {
+      "text": "so you got to get your ketchup sodas and straws all from the same area its too crowded for that...",
+      "true_label": "Neutral",
+      "predicted_label": "Amazing"
+    },
+    {
+      "text": "i honestly the food was delish like always from rasing canes! they would have gotten all 5 stars if it wasnt for the employee at the counter he was something else! he was young 20s, hard to understand...",
+      "true_label": "Negative",
+      "predicted_label": "Amazing"
+    },
+    {
+      "text": "very disappointed at il patia di eatily boston. first off, they do not serve chianti at this location,,secondly, when asked what type of water we would prefer, we specified still, and when we got the ...",
+      "true_label": "Positive",
+      "predicted_label": "Amazing"
+    },
+    {
+      "text": "busy little place in boston but good service. chicken tenders were good but the dipping sauce was salty. fries were really good as well. i didnt see parking....",
+      "true_label": "Negative",
+      "predicted_label": "Terrible"
+    },
+    {
+      "text": "eataly at the prudential center in boston is a large italian marketplace offering an extensive variety of cuisine and specialty items. from wines, fish, meats, cheeses, and pasta to breads, gelato, ba...",
+      "true_label": "Terrible",
+      "predicted_label": "Negative"
+    },
+    {
+      "text": "review of raising canes 828th location rating 8.510 this location offered the most generous portion sizes ive ever received at any raising canes, making the price point feel especially reasonable for ...",
+      "true_label": "Negative",
+      "predicted_label": "Amazing"
+    },
+    {
+      "text": "never go back again...",
+      "true_label": "Amazing",
+      "predicted_label": "Terrible"
+    },
+    {
+      "text": "bad customer service...",
+      "true_label": "Amazing",
+      "predicted_label": "Terrible"
+    },
+    {
+      "text": "the greek salad was a garden salad with only 2 olives. pita bread was stale and tasteless. feta was minimal although i paid for extra....",
+      "true_label": "Amazing",
+      "predicted_label": "Terrible"
+    }
+  ]
 }

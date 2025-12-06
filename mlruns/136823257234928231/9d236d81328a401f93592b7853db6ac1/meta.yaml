@@ -1,0 +1,14 @@
+artifact_uri: file:///E:/Masters/MLOps/echo-ai/mlruns/136823257234928231/9d236d81328a401f93592b7853db6ac1/artifacts
+end_time: 1764976355156
+entry_point_name: ''
+experiment_id: '136823257234928231'
+lifecycle_stage: active
+run_id: 9d236d81328a401f93592b7853db6ac1
+run_name: amusing-moose-997
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1764976355033
+status: 3
+tags: []
+user_id: hp

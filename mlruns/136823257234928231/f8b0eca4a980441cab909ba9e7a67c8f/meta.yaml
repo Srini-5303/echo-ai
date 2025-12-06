@@ -1,0 +1,14 @@
+artifact_uri: file:///E:/Masters/MLOps/echo-ai/mlruns/136823257234928231/f8b0eca4a980441cab909ba9e7a67c8f/artifacts
+end_time: 1764896250191
+entry_point_name: ''
+experiment_id: '136823257234928231'
+lifecycle_stage: active
+run_id: f8b0eca4a980441cab909ba9e7a67c8f
+run_name: thoughtful-conch-653
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1764896250125
+status: 3
+tags: []
+user_id: hp

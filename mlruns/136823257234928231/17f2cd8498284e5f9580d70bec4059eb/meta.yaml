@@ -1,0 +1,14 @@
+artifact_uri: file:///E:/Masters/MLOps/echo-ai/mlruns/136823257234928231/17f2cd8498284e5f9580d70bec4059eb/artifacts
+end_time: 1764976352821
+entry_point_name: ''
+experiment_id: '136823257234928231'
+lifecycle_stage: active
+run_id: 17f2cd8498284e5f9580d70bec4059eb
+run_name: masked-squirrel-791
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1764976352753
+status: 3
+tags: []
+user_id: hp

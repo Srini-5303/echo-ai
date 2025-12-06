@@ -1,0 +1,14 @@
+artifact_uri: file:///E:/Masters/MLOps/echo-ai/mlruns/136823257234928231/52b195a6b9c4429cbf815aa0f2bb5d4f/artifacts
+end_time: 1764976356092
+entry_point_name: ''
+experiment_id: '136823257234928231'
+lifecycle_stage: active
+run_id: 52b195a6b9c4429cbf815aa0f2bb5d4f
+run_name: bouncy-newt-605
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1764976356030
+status: 3
+tags: []
+user_id: hp

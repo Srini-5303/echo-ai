@@ -1,0 +1,10 @@
+artifact_location: file:///E:/Masters/MLOps/echo-ai/mlruns/703072018571413181/models/m-d89348fe283541729dc9a6836088a789/artifacts
+creation_timestamp: 1764870814015
+experiment_id: '703072018571413181'
+last_updated_timestamp: 1764870817317
+model_id: m-d89348fe283541729dc9a6836088a789
+model_type: null
+name: MultinomialNB
+source_run_id: 3013acc68cb849d8a326c99ab2d5cf30
+status: 2
+status_message: null

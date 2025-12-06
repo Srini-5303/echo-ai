@@ -1,0 +1,14 @@
+artifact_uri: file:///E:/Masters/MLOps/echo-ai/mlruns/136823257234928231/088d9551efc84ae0811eb2d7d6862386/artifacts
+end_time: 1764976353056
+entry_point_name: ''
+experiment_id: '136823257234928231'
+lifecycle_stage: active
+run_id: 088d9551efc84ae0811eb2d7d6862386
+run_name: bold-vole-219
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1764976352990
+status: 3
+tags: []
+user_id: hp

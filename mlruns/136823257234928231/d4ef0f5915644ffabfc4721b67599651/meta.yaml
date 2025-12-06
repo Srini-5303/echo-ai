@@ -1,0 +1,14 @@
+artifact_uri: file:///E:/Masters/MLOps/echo-ai/mlruns/136823257234928231/d4ef0f5915644ffabfc4721b67599651/artifacts
+end_time: 1764896250374
+entry_point_name: ''
+experiment_id: '136823257234928231'
+lifecycle_stage: active
+run_id: d4ef0f5915644ffabfc4721b67599651
+run_name: dashing-moth-191
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1764896250308
+status: 3
+tags: []
+user_id: hp

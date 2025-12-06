@@ -1,0 +1,14 @@
+artifact_uri: file:///E:/Masters/MLOps/echo-ai/mlruns/136823257234928231/a2aa6c2781704e5f9126b5bf71424491/artifacts
+end_time: 1764976351728
+entry_point_name: ''
+experiment_id: '136823257234928231'
+lifecycle_stage: active
+run_id: a2aa6c2781704e5f9126b5bf71424491
+run_name: learned-sheep-27
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1764976351668
+status: 3
+tags: []
+user_id: hp

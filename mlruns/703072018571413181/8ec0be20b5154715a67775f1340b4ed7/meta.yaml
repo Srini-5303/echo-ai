@@ -1,0 +1,14 @@
+artifact_uri: file:///E:/Masters/MLOps/echo-ai/mlruns/703072018571413181/8ec0be20b5154715a67775f1340b4ed7/artifacts
+end_time: 1764894216810
+entry_point_name: ''
+experiment_id: '703072018571413181'
+lifecycle_stage: active
+run_id: 8ec0be20b5154715a67775f1340b4ed7
+run_name: RandomForest_20251204_192329
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1764894209320
+status: 3
+tags: []
+user_id: hp

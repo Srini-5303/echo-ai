@@ -1,0 +1,14 @@
+artifact_uri: file:///E:/Masters/MLOps/echo-ai/mlruns/136823257234928231/7ec077a098d94b2c8b1e2fca1a0a348b/artifacts
+end_time: 1764896247561
+entry_point_name: ''
+experiment_id: '136823257234928231'
+lifecycle_stage: active
+run_id: 7ec077a098d94b2c8b1e2fca1a0a348b
+run_name: hilarious-snake-944
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1764896247498
+status: 3
+tags: []
+user_id: hp

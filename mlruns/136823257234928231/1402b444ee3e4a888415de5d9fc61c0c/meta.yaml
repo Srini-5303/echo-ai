@@ -1,0 +1,14 @@
+artifact_uri: file:///E:/Masters/MLOps/echo-ai/mlruns/136823257234928231/1402b444ee3e4a888415de5d9fc61c0c/artifacts
+end_time: 1764896248173
+entry_point_name: ''
+experiment_id: '136823257234928231'
+lifecycle_stage: active
+run_id: 1402b444ee3e4a888415de5d9fc61c0c
+run_name: puzzled-hawk-882
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1764896248077
+status: 3
+tags: []
+user_id: hp

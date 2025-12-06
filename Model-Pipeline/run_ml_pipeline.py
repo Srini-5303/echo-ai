@@ -17,7 +17,7 @@ from data_loader import prepare_data_for_training
 from model_training import SentimentModelTrainer
 from hyperparameter_tuning import tune_best_model
 from model_validation import ModelValidator
-from bias_detection import BiasDetector
+from model_bias_detection import BiasDetector
 from sensitivity_analysis import SensitivityAnalyzer
 
 # Configure logging
@@ -61,7 +61,7 @@ class MLPipeline:
                 'stats': stats
             }
             
-            logger.info("✓ Data preparation completed successfully")
+            logger.info(" Data preparation completed successfully")
             return data_splits
             
         except Exception as e:
@@ -87,7 +87,7 @@ class MLPipeline:
                 'all_scores': {k: float(v['f1_score']) for k, v in training_results.items()}
             }
             
-            logger.info("✓ Model training completed successfully")
+            logger.info(" Model training completed successfully")
             return best_model, vectorizer
             
         except Exception as e:
@@ -117,7 +117,7 @@ class MLPipeline:
             # Update model if tuning improved performance
             self.model = tuned_model
             
-            logger.info("✓ Hyperparameter tuning completed successfully")
+            logger.info(" Hyperparameter tuning completed successfully")
             return tuned_model
             
         except Exception as e:
@@ -143,7 +143,7 @@ class MLPipeline:
                 'auc': validation_results['metrics'].get('weighted_auc', 'N/A')
             }
             
-            logger.info("✓ Model validation completed successfully")
+            logger.info(" Model validation completed successfully")
             return validation_results
             
         except Exception as e:
@@ -167,7 +167,7 @@ class MLPipeline:
                 'recommendations': len(bias_report['recommendations'])
             }
             
-            logger.info("✓ Bias detection completed successfully")
+            logger.info(" Bias detection completed successfully")
             return bias_report
             
         except Exception as e:
@@ -189,7 +189,7 @@ class MLPipeline:
                 'analyses_performed': sensitivity_results['analyses_performed']
             }
             
-            logger.info("✓ Sensitivity analysis completed successfully")
+            logger.info(" Sensitivity analysis completed successfully")
             return sensitivity_results
             
         except Exception as e:
@@ -220,9 +220,9 @@ class MLPipeline:
         
         # Print summary
         self.print_header("PIPELINE EXECUTION SUMMARY")
-        print(f"\n📊 Pipeline completed in {elapsed_time:.2f} seconds")
-        print(f"\n📁 Results saved to: {RESULTS_DIR}")
-        print("\n📋 Steps Summary:")
+        print(f"\n Pipeline completed in {elapsed_time:.2f} seconds")
+        print(f"\n Results saved to: {RESULTS_DIR}")
+        print("\n Steps Summary:")
         
         for step, result in self.results.items():
             status = result.get('status', 'unknown')
@@ -230,8 +230,8 @@ class MLPipeline:
             print(f"  {icon} {step.replace('_', ' ').title()}: {status}")
         
         if self.model:
-            print(f"\n🏆 Best Model: {self.results.get('model_training', {}).get('best_model', 'Unknown')}")
-            print(f"📈 Test F1 Score: {self.results.get('model_validation', {}).get('f1_score', 'N/A'):.4f}")
+            print(f"\n Best Model: {self.results.get('model_training', {}).get('best_model', 'Unknown')}")
+            print(f" Test F1 Score: {self.results.get('model_validation', {}).get('f1_score', 'N/A'):.4f}")
         
         print("\n" + "="*70)
         
@@ -241,9 +241,7 @@ class MLPipeline:
         """Run complete ML pipeline"""
         self.start_time = time.time()
         
-        print("\n" + "🚀"*35)
-        print("     ECHOAI ML PIPELINE - STARTING EXECUTION")
-        print("🚀"*35)
+        print("     ECHO AI ML PIPELINE - STARTING EXECUTION")
         
         try:
             # Step 1: Data Preparation
@@ -270,7 +268,7 @@ class MLPipeline:
             # Generate Final Report
             final_report = self.generate_final_report()
             
-            logger.info("🎉 Pipeline execution completed successfully!")
+            logger.info(" Pipeline execution completed successfully!")
             
             return {
                 'model': self.model,
@@ -304,12 +302,12 @@ def main():
         else:
             results = pipeline.run_pipeline(run_tuning=args.tune)
         
-        print("\n✨ EchoAI ML Pipeline completed successfully!")
-        print(f"📁 All results saved to: {RESULTS_DIR}")
-        print(f"📊 MLflow tracking UI: Run 'mlflow ui' to view experiment tracking")
+        print("\n EchoAI ML Pipeline completed successfully!")
+        print(f" All results saved to: {RESULTS_DIR}")
+        print(f" MLflow tracking UI: Run 'mlflow ui' to view experiment tracking")
         
     except Exception as e:
-        print(f"\n❌ Pipeline failed: {e}")
+        print(f"\n Pipeline failed: {e}")
         sys.exit(1)
 
 if __name__ == "__main__":

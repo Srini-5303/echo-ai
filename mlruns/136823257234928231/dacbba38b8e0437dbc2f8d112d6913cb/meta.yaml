@@ -1,0 +1,14 @@
+artifact_uri: file:///E:/Masters/MLOps/echo-ai/mlruns/136823257234928231/dacbba38b8e0437dbc2f8d112d6913cb/artifacts
+end_time: 1764896250796
+entry_point_name: ''
+experiment_id: '136823257234928231'
+lifecycle_stage: active
+run_id: dacbba38b8e0437dbc2f8d112d6913cb
+run_name: wise-dog-463
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1764896250696
+status: 3
+tags: []
+user_id: hp

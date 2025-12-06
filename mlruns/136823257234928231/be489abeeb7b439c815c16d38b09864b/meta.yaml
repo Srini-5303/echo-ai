@@ -1,0 +1,14 @@
+artifact_uri: file:///E:/Masters/MLOps/echo-ai/mlruns/136823257234928231/be489abeeb7b439c815c16d38b09864b/artifacts
+end_time: 1764976354358
+entry_point_name: ''
+experiment_id: '136823257234928231'
+lifecycle_stage: active
+run_id: be489abeeb7b439c815c16d38b09864b
+run_name: vaunted-mare-106
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1764976354289
+status: 3
+tags: []
+user_id: hp

@@ -1,0 +1,14 @@
+artifact_uri: file:///E:/Masters/MLOps/echo-ai/mlruns/136823257234928231/736a4f1fd3e547ebbe4d44bda101f99b/artifacts
+end_time: 1764976353586
+entry_point_name: ''
+experiment_id: '136823257234928231'
+lifecycle_stage: active
+run_id: 736a4f1fd3e547ebbe4d44bda101f99b
+run_name: carefree-snail-189
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1764976353520
+status: 3
+tags: []
+user_id: hp

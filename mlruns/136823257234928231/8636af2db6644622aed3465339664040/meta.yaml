@@ -1,0 +1,14 @@
+artifact_uri: file:///E:/Masters/MLOps/echo-ai/mlruns/136823257234928231/8636af2db6644622aed3465339664040/artifacts
+end_time: 1764976353475
+entry_point_name: ''
+experiment_id: '136823257234928231'
+lifecycle_stage: active
+run_id: 8636af2db6644622aed3465339664040
+run_name: big-finch-22
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1764976353395
+status: 3
+tags: []
+user_id: hp

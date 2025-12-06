@@ -1,0 +1,14 @@
+artifact_uri: file:///E:/Masters/MLOps/echo-ai/mlruns/136823257234928231/1a966889c9294d88b7d5c5e642058da2/artifacts
+end_time: 1764896249723
+entry_point_name: ''
+experiment_id: '136823257234928231'
+lifecycle_stage: active
+run_id: 1a966889c9294d88b7d5c5e642058da2
+run_name: unique-bear-696
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1764896249655
+status: 3
+tags: []
+user_id: hp

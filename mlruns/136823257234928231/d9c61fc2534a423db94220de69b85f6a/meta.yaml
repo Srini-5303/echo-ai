@@ -1,0 +1,14 @@
+artifact_uri: file:///E:/Masters/MLOps/echo-ai/mlruns/136823257234928231/d9c61fc2534a423db94220de69b85f6a/artifacts
+end_time: 1764976353898
+entry_point_name: ''
+experiment_id: '136823257234928231'
+lifecycle_stage: active
+run_id: d9c61fc2534a423db94220de69b85f6a
+run_name: bustling-mole-862
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1764976353827
+status: 3
+tags: []
+user_id: hp

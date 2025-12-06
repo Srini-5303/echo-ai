@@ -41,7 +41,8 @@ class EchoAIInference:
         self.vectorizer = None
         self.response_generator = None
         
-        self.sentiment_labels = ['negative', 'neutral', 'positive']
+        # Updated sentiment labels to match your 5 categories
+        self.sentiment_labels = ['terrible', 'negative', 'neutral', 'positive', 'amazing']
         
         # Track performance metrics
         self.inference_stats = {
@@ -127,19 +128,27 @@ class EchoAIInference:
             raise
     
     def generate_response(self, 
-                         text: str, 
+                         reviewText: str, 
                          sentiment: str = None,
-                         business_category: str = None,
-                         rating: int = None,
+                         placeName: str = None,
+                         placeAddress: str = None,
+                         provider: str = None,
+                         reviewRating: float = None,
+                         authorName: str = None,
+                         reviewDate: str = None,
                          auto_detect_sentiment: bool = True) -> str:
         """
-        Generate a response for a review
+        Generate a response for a review using your specific features
         
         Args:
-            text: Review text
+            reviewText: Review text
             sentiment: Sentiment (if None, will be predicted)
-            business_category: Type of business
-            rating: Customer rating
+            placeName: Name of the place
+            placeAddress: Address of the place
+            provider: Review platform
+            reviewRating: Customer rating
+            authorName: Reviewer name
+            reviewDate: Date of review
             auto_detect_sentiment: Whether to predict sentiment if not provided
             
         Returns:
@@ -147,7 +156,7 @@ class EchoAIInference:
         """
         # Predict sentiment if not provided
         if sentiment is None and auto_detect_sentiment:
-            sentiment_result = self.predict_sentiment(text)
+            sentiment_result = self.predict_sentiment(reviewText)
             sentiment = sentiment_result['sentiment']
         
         if not self.response_generator:
@@ -156,10 +165,14 @@ class EchoAIInference:
         
         try:
             response = self.response_generator.generate_response(
-                text, 
-                sentiment,
-                business_category,
-                rating
+                reviewText=reviewText, 
+                sentiment=sentiment,
+                placeName=placeName,
+                placeAddress=placeAddress,
+                provider=provider,
+                reviewRating=reviewRating,
+                authorName=authorName,
+                reviewDate=reviewDate
             )
             return response
         except Exception as e:
@@ -167,11 +180,13 @@ class EchoAIInference:
             return self._get_template_response(sentiment)
     
     def _get_template_response(self, sentiment: str) -> str:
-        """Fallback template responses"""
+        """Fallback template responses for 5 sentiment levels"""
         templates = {
+            'amazing': "We are absolutely thrilled by your amazing review! Your incredible feedback means everything to us, and we can't wait to exceed your expectations again.",
             'positive': "Thank you for your positive feedback! We're delighted to hear about your experience and look forward to serving you again.",
             'neutral': "Thank you for taking the time to share your feedback. We value your input and are always working to improve our service.",
-            'negative': "We sincerely apologize for your experience. Your feedback is important to us, and we'd like to make things right. Please contact us directly."
+            'negative': "We sincerely apologize for your experience. Your feedback is important to us, and we'd like to make things right. Please contact us directly.",
+            'terrible': "We are deeply sorry for the completely unacceptable experience you had. Please contact our management immediately so we can resolve this urgently."
         }
         return templates.get(sentiment, templates['neutral'])
     
@@ -188,16 +203,23 @@ class EchoAIInference:
         Returns:
             Complete analysis results
         """
-        # Parse input
+        # Parse input based on your features
         if isinstance(review, str):
             review_text = review
             metadata = {}
         else:
-            review_text = review.get('text', review.get('review', ''))
+            # Extract using your specific feature names
+            review_text = review.get('reviewText', review.get('text', ''))
             metadata = {
-                k: v for k, v in review.items() 
-                if k not in ['text', 'review']
+                'placeName': review.get('placeName'),
+                'placeAddress': review.get('placeAddress'),
+                'provider': review.get('provider'),
+                'reviewRating': review.get('reviewRating'),
+                'authorName': review.get('authorName'),
+                'reviewDate': review.get('reviewDate')
             }
+            # Remove None values
+            metadata = {k: v for k, v in metadata.items() if v is not None}
         
         # Start processing
         result = {
@@ -214,10 +236,14 @@ class EchoAIInference:
             # Step 2: Response Generation (if requested)
             if generate_response:
                 response = self.generate_response(
-                    review_text,
-                    sentiment_result['sentiment'],
-                    metadata.get('business_category'),
-                    metadata.get('rating')
+                    reviewText=review_text,
+                    sentiment=sentiment_result['sentiment'],
+                    placeName=metadata.get('placeName'),
+                    placeAddress=metadata.get('placeAddress'),
+                    provider=metadata.get('provider'),
+                    reviewRating=metadata.get('reviewRating'),
+                    authorName=metadata.get('authorName'),
+                    reviewDate=metadata.get('reviewDate')
                 )
                 result['generated_response'] = response
             
@@ -276,6 +302,42 @@ class EchoAIInference:
         
         return results
     
+    def process_dataframe(self, df: pd.DataFrame, 
+                         generate_responses: bool = True,
+                         save_results: bool = True) -> pd.DataFrame:
+        """
+        Process reviews from a DataFrame with your specific columns
+        
+        Args:
+            df: DataFrame with review data
+            generate_responses: Whether to generate responses
+            save_results: Whether to save results
+            
+        Returns:
+            DataFrame with added sentiment and response columns
+        """
+        # Convert DataFrame to list of dicts for processing
+        reviews = df.to_dict('records')
+        
+        # Process all reviews
+        results = self.process_batch(reviews, generate_responses, save_results=False)
+        
+        # Add results back to DataFrame
+        df['sentiment'] = [r['sentiment_analysis']['sentiment'] for r in results]
+        df['sentiment_confidence'] = [r['sentiment_analysis'].get('confidence', 0) for r in results]
+        
+        if generate_responses:
+            df['generated_response'] = [r.get('generated_response', '') for r in results]
+        
+        # Save if requested
+        if save_results:
+            timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+            output_file = RESULTS_DIR / f'processed_reviews_{timestamp}.csv'
+            df.to_csv(output_file, index=False)
+            logger.info(f"Results saved to {output_file}")
+        
+        return df
+    
     def _save_batch_results(self, results: List[Dict]):
         """Save batch processing results"""
         timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
@@ -308,8 +370,8 @@ class EchoAIInference:
             print("\nSentiment Distribution:")
             for sentiment in self.sentiment_labels:
                 count = sentiments.count(sentiment)
-                percentage = (count / len(sentiments)) * 100
-                print(f"  {sentiment.capitalize()}: {count} ({percentage:.1f}%)")
+                percentage = (count / len(sentiments)) * 100 if sentiments else 0
+                print(f"  {sentiment.capitalize():8} : {count:3} ({percentage:5.1f}%)")
         
         if self.inference_stats['avg_confidence'] > 0:
             print(f"\nAverage Confidence: {self.inference_stats['avg_confidence']:.3f}")
@@ -320,9 +382,7 @@ class EchoAIInference:
         """
         Interactive mode for testing individual reviews
         """
-        print("\n" + "🤖"*30)
         print("     ECHOAI INTERACTIVE MODE")
-        print("🤖"*30)
         print("\nEnter reviews to analyze and generate responses.")
         print("Type 'quit' to exit, 'stats' for statistics.")
         print("-"*60)
@@ -330,15 +390,14 @@ class EchoAIInference:
         while True:
             try:
                 # Get user input
-                print("\n📝 Enter a review (or command):")
+                print("\n Enter a review (or command):")
                 user_input = input("> ").strip()
                 
                 # Check for commands
                 if user_input.lower() == 'quit':
-                    print("👋 Goodbye!")
                     break
                 elif user_input.lower() == 'stats':
-                    print(f"\n📊 Statistics:")
+                    print(f"\n Statistics:")
                     print(f"  Processed: {self.inference_stats['total_processed']}")
                     print(f"  Successful: {self.inference_stats['successful']}")
                     print(f"  Failed: {self.inference_stats['failed']}")
@@ -347,17 +406,24 @@ class EchoAIInference:
                 elif not user_input:
                     continue
                 
-                # Get optional metadata
-                print("\n📋 Optional info (press Enter to skip):")
-                category = input("  Business category (Restaurant/Hotel/Retail): ").strip() or None
+                # Get optional metadata using your features
+                print("\n Optional info (press Enter to skip):")
+                place_name = input("  Place name: ").strip() or None
+                place_address = input("  Place address: ").strip() or None
+                provider = input("  Provider (Google/Yelp/TripAdvisor): ").strip() or None
                 rating_str = input("  Rating (1-5): ").strip()
-                rating = int(rating_str) if rating_str.isdigit() else None
+                rating = float(rating_str) if rating_str else None
+                author = input("  Author name: ").strip() or None
                 
                 # Process review
                 review_data = {
-                    'text': user_input,
-                    'business_category': category,
-                    'rating': rating
+                    'reviewText': user_input,
+                    'placeName': place_name,
+                    'placeAddress': place_address,
+                    'provider': provider,
+                    'reviewRating': rating,
+                    'authorName': author,
+                    'reviewDate': datetime.now().strftime('%Y-%m-%d')
                 }
                 
                 result = self.process_review(review_data, generate_response=True)
@@ -369,26 +435,25 @@ class EchoAIInference:
                 
                 if result['status'] == 'success':
                     sentiment_data = result['sentiment_analysis']
-                    print(f"\n😊 Sentiment: {sentiment_data['sentiment'].upper()}")
-                    print(f"📊 Confidence: {sentiment_data.get('confidence', 'N/A'):.3f}")
+                    
+                    print(f" Confidence: {sentiment_data.get('confidence', 0):.3f}")
                     
                     if sentiment_data.get('probabilities'):
-                        print("\n📈 Probabilities:")
-                        for label, prob in sentiment_data['probabilities'].items():
-                            bar = '█' * int(prob * 20)
-                            print(f"  {label:8} [{bar:20}] {prob:.3f}")
+                        print("\n Probabilities:")
+                        for label in self.sentiment_labels:
+                            prob = sentiment_data['probabilities'].get(label, 0)
+                            print(f"  {label:8} {prob:.3f}")
                     
                     if 'generated_response' in result:
-                        print(f"\n💬 Generated Response:")
+                        print(f"\n Generated Response:")
                         print(f"  {result['generated_response']}")
                 else:
-                    print(f"❌ Error: {result.get('error', 'Unknown error')}")
+                    print(f" Error: {result.get('error', 'Unknown error')}")
                 
             except KeyboardInterrupt:
-                print("\n👋 Goodbye!")
                 break
             except Exception as e:
-                print(f"❌ Error: {e}")
+                print(f" Error: {e}")
                 continue
 
 def main():
@@ -396,9 +461,9 @@ def main():
     import argparse
     
     parser = argparse.ArgumentParser(description='EchoAI Inference Pipeline')
-    parser.add_argument('--mode', choices=['interactive', 'batch', 'demo'], 
+    parser.add_argument('--mode', choices=['interactive', 'batch', 'demo', 'csv'], 
                        default='demo', help='Running mode')
-    parser.add_argument('--input', type=str, help='Input file for batch mode')
+    parser.add_argument('--input', type=str, help='Input file for batch/csv mode')
     parser.add_argument('--llm', type=str, default='google/flan-t5-base',
                        help='LLM model to use')
     parser.add_argument('--no-response', action='store_true',
@@ -423,11 +488,8 @@ def main():
         if args.input.endswith('.json'):
             with open(args.input, 'r') as f:
                 reviews = json.load(f)
-        elif args.input.endswith('.csv'):
-            df = pd.read_csv(args.input)
-            reviews = df.to_dict('records')
         else:
-            print("Error: Input file must be JSON or CSV")
+            print("Error: Input file must be JSON for batch mode")
             return
         
         # Process batch
@@ -436,40 +498,96 @@ def main():
             generate_responses=not args.no_response
         )
         
+    elif args.mode == 'csv':
+        # CSV mode for your specific features
+        if not args.input:
+            print("Error: --input required for CSV mode")
+            return
+        
+        # Load CSV with your features
+        df = pd.read_csv(args.input)
+        
+        # Check for required columns
+        required_col = 'reviewText'
+        if required_col not in df.columns:
+            print(f"Error: CSV must contain '{required_col}' column")
+            print(f"Available columns: {list(df.columns)}")
+            return
+        
+        # Process DataFrame
+        df_results = pipeline.process_dataframe(
+            df,
+            generate_responses=not args.no_response
+        )
+        
+        print(f"\n✅ Processed {len(df_results)} reviews from CSV")
+        
     else:
-        # Demo mode
+        # Demo mode with your features
         demo_reviews = [
             {
-                'text': "Absolutely loved the ambiance and the food was to die for! Best restaurant in town!",
-                'business_category': 'Restaurant',
-                'rating': 5
+                'reviewText': "This place exceeded all my expectations! Absolutely phenomenal service and quality!",
+                'placeName': 'The Grand Restaurant',
+                'placeAddress': '123 Main St, Boston, MA',
+                'provider': 'Google',
+                'reviewRating': 5.0,
+                'authorName': 'John Smith',
+                'reviewDate': '2024-01-15'
             },
             {
-                'text': "The service was slow and the food was cold. Very disappointing experience.",
-                'business_category': 'Restaurant', 
-                'rating': 2
+                'reviewText': "Great food and excellent service. Would definitely recommend!",
+                'placeName': 'Bella Italia',
+                'placeAddress': '456 Oak Ave, Boston, MA',
+                'provider': 'Yelp',
+                'reviewRating': 4.0,
+                'authorName': 'Sarah Johnson',
+                'reviewDate': '2024-01-14'
             },
             {
-                'text': "Nice place, decent food. Nothing special but not bad either.",
-                'business_category': 'Restaurant',
-                'rating': 3
+                'reviewText': "Average place, nothing special. Service was okay.",
+                'placeName': 'City Cafe',
+                'placeAddress': '789 Park Rd, Boston, MA',
+                'provider': 'TripAdvisor',
+                'reviewRating': 3.0,
+                'authorName': 'Mike Wilson',
+                'reviewDate': '2024-01-13'
+            },
+            {
+                'reviewText': "Very disappointed. Food was cold and service was slow.",
+                'placeName': 'Quick Bites',
+                'placeAddress': '321 Elm St, Boston, MA',
+                'provider': 'Google',
+                'reviewRating': 2.0,
+                'authorName': 'Lisa Brown',
+                'reviewDate': '2024-01-12'
+            },
+            {
+                'reviewText': "Worst experience ever! Rude staff and terrible food. Never coming back!",
+                'placeName': 'Corner Diner',
+                'placeAddress': '654 Pine Ave, Boston, MA',
+                'provider': 'Yelp',
+                'reviewRating': 1.0,
+                'authorName': 'Robert Davis',
+                'reviewDate': '2024-01-11'
             }
         ]
         
-        print("\n🎭 DEMO MODE - Processing sample reviews")
+        print("\n DEMO MODE - Processing sample reviews")
         print("="*60)
         
         for i, review in enumerate(demo_reviews, 1):
-            print(f"\n📝 Review {i}:")
-            print(f"   {review['text']}")
+            print(f"\n Review {i}:")
+            print(f"   Place: {review['placeName']}")
+            print(f"   Review: {review['reviewText']}")
+            print(f"   Author: {review['authorName']}")
             
             result = pipeline.process_review(review)
             
             if result['status'] == 'success':
-                print(f"😊 Sentiment: {result['sentiment_analysis']['sentiment']}")
-                print(f"📊 Confidence: {result['sentiment_analysis'].get('confidence', 0):.3f}")
+                sentiment = result['sentiment_analysis']['sentiment']
+                print(f" Confidence: {result['sentiment_analysis'].get('confidence', 0):.3f}")
                 if 'generated_response' in result:
-                    print(f"💬 Response: {result['generated_response']}")
+                    print(f" Response: {result['generated_response']}")
             print("-"*60)
 
 if __name__ == "__main__":

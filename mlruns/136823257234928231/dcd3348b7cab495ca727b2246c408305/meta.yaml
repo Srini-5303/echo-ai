@@ -1,0 +1,14 @@
+artifact_uri: file:///E:/Masters/MLOps/echo-ai/mlruns/136823257234928231/dcd3348b7cab495ca727b2246c408305/artifacts
+end_time: 1764896247478
+entry_point_name: ''
+experiment_id: '136823257234928231'
+lifecycle_stage: active
+run_id: dcd3348b7cab495ca727b2246c408305
+run_name: resilient-zebra-1
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1764896247412
+status: 3
+tags: []
+user_id: hp

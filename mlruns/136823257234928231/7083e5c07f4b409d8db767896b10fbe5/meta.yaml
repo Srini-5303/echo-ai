@@ -1,0 +1,14 @@
+artifact_uri: file:///E:/Masters/MLOps/echo-ai/mlruns/136823257234928231/7083e5c07f4b409d8db767896b10fbe5/artifacts
+end_time: 1764976355996
+entry_point_name: ''
+experiment_id: '136823257234928231'
+lifecycle_stage: active
+run_id: 7083e5c07f4b409d8db767896b10fbe5
+run_name: unequaled-colt-108
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1764976355932
+status: 3
+tags: []
+user_id: hp

@@ -1,0 +1,14 @@
+artifact_uri: file:///E:/Masters/MLOps/echo-ai/mlruns/136823257234928231/320dadf5916b4d7099711affb93f2db2/artifacts
+end_time: 1764896251821
+entry_point_name: ''
+experiment_id: '136823257234928231'
+lifecycle_stage: active
+run_id: 320dadf5916b4d7099711affb93f2db2
+run_name: treasured-wolf-390
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1764896251757
+status: 3
+tags: []
+user_id: hp

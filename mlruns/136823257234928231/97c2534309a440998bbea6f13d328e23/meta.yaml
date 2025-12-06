@@ -1,0 +1,14 @@
+artifact_uri: file:///E:/Masters/MLOps/echo-ai/mlruns/136823257234928231/97c2534309a440998bbea6f13d328e23/artifacts
+end_time: 1764896247942
+entry_point_name: ''
+experiment_id: '136823257234928231'
+lifecycle_stage: active
+run_id: 97c2534309a440998bbea6f13d328e23
+run_name: gaudy-trout-335
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1764896247830
+status: 3
+tags: []
+user_id: hp

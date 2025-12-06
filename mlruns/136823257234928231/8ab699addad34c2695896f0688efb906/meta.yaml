@@ -1,0 +1,14 @@
+artifact_uri: file:///E:/Masters/MLOps/echo-ai/mlruns/136823257234928231/8ab699addad34c2695896f0688efb906/artifacts
+end_time: 1764896249170
+entry_point_name: ''
+experiment_id: '136823257234928231'
+lifecycle_stage: active
+run_id: 8ab699addad34c2695896f0688efb906
+run_name: awesome-newt-901
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1764896249104
+status: 3
+tags: []
+user_id: hp

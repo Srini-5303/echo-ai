@@ -1,0 +1,14 @@
+artifact_uri: file:///E:/Masters/MLOps/echo-ai/mlruns/136823257234928231/951898b7e25640c2ad1be3bd7dbc182f/artifacts
+end_time: 1764896252321
+entry_point_name: ''
+experiment_id: '136823257234928231'
+lifecycle_stage: active
+run_id: 951898b7e25640c2ad1be3bd7dbc182f
+run_name: treasured-skink-235
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1764896252178
+status: 3
+tags: []
+user_id: hp

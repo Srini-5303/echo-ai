@@ -1,0 +1,14 @@
+artifact_uri: file:///E:/Masters/MLOps/echo-ai/mlruns/136823257234928231/f43cfc79d9b34b5e8ae1d2461f62ef89/artifacts
+end_time: 1764896250655
+entry_point_name: ''
+experiment_id: '136823257234928231'
+lifecycle_stage: active
+run_id: f43cfc79d9b34b5e8ae1d2461f62ef89
+run_name: silent-carp-945
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1764896250584
+status: 3
+tags: []
+user_id: hp

@@ -1,0 +1,14 @@
+artifact_uri: file:///E:/Masters/MLOps/echo-ai/mlruns/136823257234928231/b5f8a5286fbc4ed8a59eaed56797b74d/artifacts
+end_time: 1764896246090
+entry_point_name: ''
+experiment_id: '136823257234928231'
+lifecycle_stage: active
+run_id: b5f8a5286fbc4ed8a59eaed56797b74d
+run_name: mercurial-hog-388
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1764896245951
+status: 3
+tags: []
+user_id: hp

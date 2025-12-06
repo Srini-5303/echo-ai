@@ -1,0 +1,14 @@
+artifact_uri: file:///E:/Masters/MLOps/echo-ai/mlruns/136823257234928231/eb71cd5bbb38418d9a6df72555b9bfaa/artifacts
+end_time: 1764896248349
+entry_point_name: ''
+experiment_id: '136823257234928231'
+lifecycle_stage: active
+run_id: eb71cd5bbb38418d9a6df72555b9bfaa
+run_name: respected-shrike-303
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1764896248241
+status: 3
+tags: []
+user_id: hp

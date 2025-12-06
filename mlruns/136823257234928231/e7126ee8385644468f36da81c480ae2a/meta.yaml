@@ -1,0 +1,14 @@
+artifact_uri: file:///E:/Masters/MLOps/echo-ai/mlruns/136823257234928231/e7126ee8385644468f36da81c480ae2a/artifacts
+end_time: 1764976355707
+entry_point_name: ''
+experiment_id: '136823257234928231'
+lifecycle_stage: active
+run_id: e7126ee8385644468f36da81c480ae2a
+run_name: luminous-lark-210
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1764976355651
+status: 3
+tags: []
+user_id: hp

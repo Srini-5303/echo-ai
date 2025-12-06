@@ -12,8 +12,8 @@ RESULTS_DIR = BASE_DIR / 'results'
 LOGS_DIR = BASE_DIR / 'logs'
 
 # Data paths
-RAW_DATA_PATH = DATA_DIR / 'raw' / 'synthetic_reviews.csv'
-PROCESSED_DATA_PATH = DATA_DIR / 'processed' / 'clean_reviews.csv'
+RAW_DATA_PATH = DATA_DIR / 'raw' / 'apify_data.csv'
+PROCESSED_DATA_PATH = DATA_DIR / 'processed' / 'features_apify.csv'
 
 # Model paths
 BEST_MODEL_PATH = MODEL_DIR / 'best_model.pkl'
@@ -39,15 +39,15 @@ CV_FOLDS = 5
 
 # Bias detection slices
 BIAS_SLICES = [
-    'business_category',
-    'platform',
-    'has_owner_response',
-    'rating'
+    'authorName',
+    'provider',
+    'reviewRating',
+    'placeName'
 ]
 
 # Fairness thresholds
 FAIRNESS_THRESHOLD = 0.1  # Max acceptable difference in metrics across slices
-MIN_SLICE_SIZE = 30  # Minimum samples in a slice for reliable metrics
+MIN_SLICE_SIZE = 10  # Minimum samples in a slice for reliable metrics
 
 # Create directories if they don't exist
 for dir_path in [MODEL_DIR, RESULTS_DIR, LOGS_DIR]:

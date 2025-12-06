@@ -1,0 +1,47 @@
+{
+  "pipeline_name": "EchoAI ML Pipeline",
+  "execution_date": "2025-12-04T13:42:13.995136",
+  "total_duration_seconds": 2949.832720518112,
+  "pipeline_status": "completed",
+  "steps_summary": {
+    "data_preparation": {
+      "status": "success",
+      "train_size": 730,
+      "val_size": 105,
+      "test_size": 209,
+      "stats": {
+        "total_reviews": 1044,
+        "avg_rating": 4.170498084291188,
+        "rating_distribution": {
+          "5": 679,
+          "4": 142,
+          "1": 124,
+          "3": 69,
+          "2": 30
+        },
+        "avg_text_length": 134.43295019157088,
+        "provider_distribution": {
+          "google-maps": 930,
+          "tripadvisor": 114
+        }
+      }
+    },
+    "model_training": {
+      "status": "success",
+      "best_model": "MultinomialNB",
+      "best_score": 0.8211211892164273,
+      "all_scores": {
+        "LogisticRegression": 0.7796878274831031,
+        "RandomForest": 0.8024616170578903,
+        "GradientBoosting": 0.8150428065832348,
+        "LinearSVC": 0.7574332657039423,
+        "MultinomialNB": 0.8211211892164273
+      }
+    },
+    "model_validation": {
+      "status": "failed",
+      "error": "list index out of range"
+    },
+    "pipeline_status": "failed"
+  }
+}

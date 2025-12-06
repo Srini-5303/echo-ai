@@ -1,288 +1,286 @@
 {
   "summary": {
-    "total_slices_analyzed": 4,
+    "total_slices_analyzed": 3,
     "fairness_threshold": 0.1,
-    "min_slice_size": 30
+    "min_slice_size": 10
   },
   "slice_analyses": {
-    "business_category": {
-      "metrics": {
-        "Restaurant": {
-          "accuracy": 1.0,
-          "f1": 1.0,
-          "precision": 1.0,
-          "recall": 1.0,
-          "support": 183
-        },
-        "Automotive": {
-          "accuracy": 1.0,
-          "f1": 1.0,
-          "precision": 1.0,
-          "recall": 1.0,
-          "support": 208
-        },
-        "Healthcare": {
-          "accuracy": 1.0,
-          "f1": 1.0,
-          "precision": 1.0,
-          "recall": 1.0,
-          "support": 202
-        },
-        "Retail": {
-          "accuracy": 1.0,
-          "f1": 1.0,
-          "precision": 1.0,
-          "recall": 1.0,
-          "support": 220
-        },
-        "Hotel": {
-          "accuracy": 1.0,
-          "f1": 1.0,
-          "precision": 1.0,
-          "recall": 1.0,
-          "support": 177
-        }
-      },
-      "disparities": {
-        "accuracy": {
-          "max": 1.0,
-          "min": 1.0,
-          "range": 0.0,
-          "std": 0.0,
-          "mean": 1.0,
-          "overall": 1.0,
-          "max_deviation": 0.0
-        },
-        "f1": {
-          "max": 1.0,
-          "min": 1.0,
-          "range": 0.0,
-          "std": 0.0,
-          "mean": 1.0,
-          "overall": 1.0,
-          "max_deviation": 0.0
-        },
-        "precision": {
-          "max": 1.0,
-          "min": 1.0,
-          "range": 0.0,
-          "std": 0.0,
-          "mean": 1.0,
-          "overall": 1.0,
-          "max_deviation": 0.0
-        },
-        "recall": {
-          "max": 1.0,
-          "min": 1.0,
-          "range": 0.0,
-          "std": 0.0,
-          "mean": 1.0,
-          "overall": 1.0,
-          "max_deviation": 0.0
-        }
-      },
+    "authorName": {
+      "metrics": {},
+      "disparities": {},
       "violations": []
     },
-    "platform": {
+    "provider": {
       "metrics": {
-        "Google": {
-          "accuracy": 1.0,
-          "f1": 1.0,
-          "precision": 1.0,
-          "recall": 1.0,
-          "support": 332
+        "google-maps": {
+          "accuracy": 0.8010752688172043,
+          "f1": 0.7827481008695429,
+          "precision": 0.8064883156731838,
+          "recall": 0.8010752688172043,
+          "support": 186
         },
-        "Yelp": {
-          "accuracy": 1.0,
-          "f1": 1.0,
-          "precision": 1.0,
-          "recall": 1.0,
-          "support": 339
-        },
-        "Facebook": {
-          "accuracy": 1.0,
-          "f1": 1.0,
-          "precision": 1.0,
-          "recall": 1.0,
-          "support": 319
+        "tripadvisor": {
+          "accuracy": 0.6086956521739131,
+          "f1": 0.5902503293807642,
+          "precision": 0.5728900255754475,
+          "recall": 0.6086956521739131,
+          "support": 23
         }
       },
       "disparities": {
         "accuracy": {
-          "max": 1.0,
-          "min": 1.0,
-          "range": 0.0,
-          "std": 0.0,
-          "mean": 1.0,
-          "overall": 1.0,
-          "max_deviation": 0.0
+          "max": 0.8010752688172043,
+          "min": 0.6086956521739131,
+          "range": 0.19237961664329117,
+          "std": 0.09618980832164559,
+          "mean": 0.7048854604955587,
+          "overall": 0.7799043062200957,
+          "max_deviation": 0.17120865404618257
         },
         "f1": {
-          "max": 1.0,
-          "min": 1.0,
-          "range": 0.0,
-          "std": 0.0,
-          "mean": 1.0,
-          "overall": 1.0,
-          "max_deviation": 0.0
+          "max": 0.7827481008695429,
+          "min": 0.5902503293807642,
+          "range": 0.19249777148877878,
+          "std": 0.09624888574438939,
+          "mean": 0.6864992151251536,
+          "overall": 0.7584759917565617,
+          "max_deviation": 0.1682256623757975
         },
         "precision": {
-          "max": 1.0,
-          "min": 1.0,
-          "range": 0.0,
-          "std": 0.0,
-          "mean": 1.0,
-          "overall": 1.0,
-          "max_deviation": 0.0
+          "max": 0.8064883156731838,
+          "min": 0.5728900255754475,
+          "range": 0.23359829009773625,
+          "std": 0.11679914504886812,
+          "mean": 0.6896891706243157,
+          "overall": 0.7851614075464842,
+          "max_deviation": 0.21227138197103668
         },
         "recall": {
-          "max": 1.0,
-          "min": 1.0,
-          "range": 0.0,
-          "std": 0.0,
-          "mean": 1.0,
-          "overall": 1.0,
-          "max_deviation": 0.0
+          "max": 0.8010752688172043,
+          "min": 0.6086956521739131,
+          "range": 0.19237961664329117,
+          "std": 0.09618980832164559,
+          "mean": 0.7048854604955587,
+          "overall": 0.7799043062200957,
+          "max_deviation": 0.17120865404618257
         }
       },
-      "violations": []
+      "violations": [
+        {
+          "metric": "accuracy",
+          "range": 0.19237961664329117,
+          "threshold": 0.1,
+          "severity": "MEDIUM"
+        },
+        {
+          "metric": "f1",
+          "range": 0.19249777148877878,
+          "threshold": 0.1,
+          "severity": "MEDIUM"
+        },
+        {
+          "metric": "precision",
+          "range": 0.23359829009773625,
+          "threshold": 0.1,
+          "severity": "HIGH"
+        },
+        {
+          "metric": "recall",
+          "range": 0.19237961664329117,
+          "threshold": 0.1,
+          "severity": "MEDIUM"
+        }
+      ]
     },
-    "has_owner_response": {
+    "placeName": {
       "metrics": {
-        "True": {
-          "accuracy": 1.0,
-          "f1": 1.0,
-          "precision": 1.0,
-          "recall": 1.0,
-          "support": 283
+        "Raising Cane's Chicken Fingers": {
+          "accuracy": 0.7727272727272727,
+          "f1": 0.7523202366575861,
+          "precision": 0.7953856749311295,
+          "recall": 0.7727272727272727,
+          "support": 66
         },
-        "False": {
-          "accuracy": 1.0,
-          "f1": 1.0,
-          "precision": 1.0,
-          "recall": 1.0,
-          "support": 707
+        "Wendy's": {
+          "accuracy": 0.7857142857142857,
+          "f1": 0.7710204081632654,
+          "precision": 0.8192118226600985,
+          "recall": 0.7857142857142857,
+          "support": 42
+        },
+        "Dave's Hot Chicken": {
+          "accuracy": 0.8571428571428571,
+          "f1": 0.8303571428571428,
+          "precision": 0.8051948051948051,
+          "recall": 0.8571428571428571,
+          "support": 35
+        },
+        "Boston House of Pizza": {
+          "accuracy": 0.6428571428571429,
+          "f1": 0.6136054421768709,
+          "precision": 0.75,
+          "recall": 0.6428571428571429,
+          "support": 14
+        },
+        "University House of Pizza": {
+          "accuracy": 0.9230769230769231,
+          "f1": 0.8861538461538463,
+          "precision": 0.8520710059171598,
+          "recall": 0.9230769230769231,
+          "support": 13
+        },
+        "Brighton House of Pizza": {
+          "accuracy": 0.9,
+          "f1": 0.9066666666666666,
+          "precision": 0.9333333333333333,
+          "recall": 0.9,
+          "support": 10
         }
       },
       "disparities": {
         "accuracy": {
-          "max": 1.0,
-          "min": 1.0,
-          "range": 0.0,
-          "std": 0.0,
-          "mean": 1.0,
-          "overall": 1.0,
-          "max_deviation": 0.0
+          "max": 0.9230769230769231,
+          "min": 0.6428571428571429,
+          "range": 0.2802197802197802,
+          "std": 0.09393921097199982,
+          "mean": 0.8135864135864136,
+          "overall": 0.7799043062200957,
+          "max_deviation": 0.14317261685682747
         },
         "f1": {
-          "max": 1.0,
-          "min": 1.0,
-          "range": 0.0,
-          "std": 0.0,
-          "mean": 1.0,
-          "overall": 1.0,
-          "max_deviation": 0.0
+          "max": 0.9066666666666666,
+          "min": 0.6136054421768709,
+          "range": 0.29306122448979577,
+          "std": 0.0977351076059243,
+          "mean": 0.7933539571125631,
+          "overall": 0.7584759917565617,
+          "max_deviation": 0.14819067491010496
         },
         "precision": {
-          "max": 1.0,
-          "min": 1.0,
-          "range": 0.0,
-          "std": 0.0,
-          "mean": 1.0,
-          "overall": 1.0,
-          "max_deviation": 0.0
+          "max": 0.9333333333333333,
+          "min": 0.75,
+          "range": 0.18333333333333335,
+          "std": 0.05685098447091989,
+          "mean": 0.8258661070060879,
+          "overall": 0.7851614075464842,
+          "max_deviation": 0.14817192578684912
         },
         "recall": {
-          "max": 1.0,
-          "min": 1.0,
-          "range": 0.0,
-          "std": 0.0,
-          "mean": 1.0,
-          "overall": 1.0,
-          "max_deviation": 0.0
+          "max": 0.9230769230769231,
+          "min": 0.6428571428571429,
+          "range": 0.2802197802197802,
+          "std": 0.09393921097199982,
+          "mean": 0.8135864135864136,
+          "overall": 0.7799043062200957,
+          "max_deviation": 0.14317261685682747
         }
       },
-      "violations": []
-    },
-    "rating": {
-      "metrics": {
-        "5": {
-          "accuracy": 1.0,
-          "f1": 1.0,
-          "precision": 1.0,
-          "recall": 1.0,
-          "support": 311
+      "violations": [
+        {
+          "metric": "accuracy",
+          "range": 0.2802197802197802,
+          "threshold": 0.1,
+          "severity": "HIGH"
         },
-        "1": {
-          "accuracy": 1.0,
-          "f1": 1.0,
-          "precision": 1.0,
-          "recall": 1.0,
-          "support": 137
+        {
+          "metric": "f1",
+          "range": 0.29306122448979577,
+          "threshold": 0.1,
+          "severity": "HIGH"
         },
-        "4": {
-          "accuracy": 1.0,
-          "f1": 1.0,
-          "precision": 1.0,
-          "recall": 1.0,
-          "support": 248
+        {
+          "metric": "precision",
+          "range": 0.18333333333333335,
+          "threshold": 0.1,
+          "severity": "MEDIUM"
         },
-        "3": {
-          "accuracy": 1.0,
-          "f1": 1.0,
-          "precision": 1.0,
-          "recall": 1.0,
-          "support": 175
-        },
-        "2": {
-          "accuracy": 1.0,
-          "f1": 1.0,
-          "precision": 1.0,
-          "recall": 1.0,
-          "support": 119
+        {
+          "metric": "recall",
+          "range": 0.2802197802197802,
+          "threshold": 0.1,
+          "severity": "HIGH"
         }
-      },
-      "disparities": {
-        "accuracy": {
-          "max": 1.0,
-          "min": 1.0,
-          "range": 0.0,
-          "std": 0.0,
-          "mean": 1.0,
-          "overall": 1.0,
-          "max_deviation": 0.0
-        },
-        "f1": {
-          "max": 1.0,
-          "min": 1.0,
-          "range": 0.0,
-          "std": 0.0,
-          "mean": 1.0,
-          "overall": 1.0,
-          "max_deviation": 0.0
-        },
-        "precision": {
-          "max": 1.0,
-          "min": 1.0,
-          "range": 0.0,
-          "std": 0.0,
-          "mean": 1.0,
-          "overall": 1.0,
-          "max_deviation": 0.0
-        },
-        "recall": {
-          "max": 1.0,
-          "min": 1.0,
-          "range": 0.0,
-          "std": 0.0,
-          "mean": 1.0,
-          "overall": 1.0,
-          "max_deviation": 0.0
-        }
-      },
-      "violations": []
+      ]
     }
   },
-  "violations": [],
-  "recommendations": []
+  "violations": [
+    {
+      "metric": "accuracy",
+      "range": 0.19237961664329117,
+      "threshold": 0.1,
+      "severity": "MEDIUM",
+      "slice": "provider"
+    },
+    {
+      "metric": "f1",
+      "range": 0.19249777148877878,
+      "threshold": 0.1,
+      "severity": "MEDIUM",
+      "slice": "provider"
+    },
+    {
+      "metric": "precision",
+      "range": 0.23359829009773625,
+      "threshold": 0.1,
+      "severity": "HIGH",
+      "slice": "provider"
+    },
+    {
+      "metric": "recall",
+      "range": 0.19237961664329117,
+      "threshold": 0.1,
+      "severity": "MEDIUM",
+      "slice": "provider"
+    },
+    {
+      "metric": "accuracy",
+      "range": 0.2802197802197802,
+      "threshold": 0.1,
+      "severity": "HIGH",
+      "slice": "placeName"
+    },
+    {
+      "metric": "f1",
+      "range": 0.29306122448979577,
+      "threshold": 0.1,
+      "severity": "HIGH",
+      "slice": "placeName"
+    },
+    {
+      "metric": "precision",
+      "range": 0.18333333333333335,
+      "threshold": 0.1,
+      "severity": "MEDIUM",
+      "slice": "placeName"
+    },
+    {
+      "metric": "recall",
+      "range": 0.2802197802197802,
+      "threshold": 0.1,
+      "severity": "HIGH",
+      "slice": "placeName"
+    }
+  ],
+  "recommendations": [
+    {
+      "priority": "HIGH",
+      "issue": "Found 4 high-severity fairness violations",
+      "suggestion": "Consider re-training with balanced sampling or applying fairness constraints"
+    },
+    {
+      "priority": "MEDIUM",
+      "issue": "Found 4 medium-severity fairness violations",
+      "suggestion": "Monitor these slices closely and consider targeted improvements"
+    },
+    {
+      "priority": "MEDIUM",
+      "issue": "Performance disparity in placeName",
+      "suggestion": "Apply data augmentation or re-weighting for underperforming placeName categories"
+    },
+    {
+      "priority": "MEDIUM",
+      "issue": "Performance disparity in provider",
+      "suggestion": "Apply data augmentation or re-weighting for underperforming provider categories"
+    }
+  ]
 }

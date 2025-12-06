@@ -1,6 +1,6 @@
 {
-  "train_size": 3465,
-  "val_size": 495,
-  "test_size": 990,
+  "train_size": 730,
+  "val_size": 105,
+  "test_size": 209,
   "random_state": 42
 }

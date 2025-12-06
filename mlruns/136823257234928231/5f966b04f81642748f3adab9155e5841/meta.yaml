@@ -1,0 +1,14 @@
+artifact_uri: file:///E:/Masters/MLOps/echo-ai/mlruns/136823257234928231/5f966b04f81642748f3adab9155e5841/artifacts
+end_time: 1764896248626
+entry_point_name: ''
+experiment_id: '136823257234928231'
+lifecycle_stage: active
+run_id: 5f966b04f81642748f3adab9155e5841
+run_name: carefree-croc-205
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1764896248559
+status: 3
+tags: []
+user_id: hp

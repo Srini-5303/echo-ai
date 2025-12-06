@@ -1,0 +1,14 @@
+artifact_uri: file:///E:/Masters/MLOps/echo-ai/mlruns/136823257234928231/caa3458c089847998eb19dc678b84a40/artifacts
+end_time: 1764976354956
+entry_point_name: ''
+experiment_id: '136823257234928231'
+lifecycle_stage: active
+run_id: caa3458c089847998eb19dc678b84a40
+run_name: thundering-crane-666
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1764976354836
+status: 3
+tags: []
+user_id: hp

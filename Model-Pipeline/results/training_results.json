@@ -1,12 +1,12 @@
 {
-  "best_model": "LogisticRegression",
-  "best_f1_score": 1.0,
-  "model_scores": {
-    "LogisticRegression": 1.0,
-    "RandomForest": 1.0,
-    "GradientBoosting": 1.0,
-    "LinearSVC": 1.0,
-    "MultinomialNB": 1.0
+  "best_model": "MultinomialNB",
+  "best_f1_score": 0.8211211892164273,
+  "results": {
+    "LogisticRegression": 0.7796878274831031,
+    "RandomForest": 0.8024616170578903,
+    "GradientBoosting": 0.8150428065832348,
+    "LinearSVC": 0.7574332657039423,
+    "MultinomialNB": 0.8211211892164273
   },
-  "timestamp": "2025-11-18T04:22:38.911376"
+  "timestamp": "2025-12-04T19:24:05.252011"
 }

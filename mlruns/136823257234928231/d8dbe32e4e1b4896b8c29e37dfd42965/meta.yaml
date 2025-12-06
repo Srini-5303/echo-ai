@@ -1,0 +1,14 @@
+artifact_uri: file:///E:/Masters/MLOps/echo-ai/mlruns/136823257234928231/d8dbe32e4e1b4896b8c29e37dfd42965/artifacts
+end_time: 1764976352256
+entry_point_name: ''
+experiment_id: '136823257234928231'
+lifecycle_stage: active
+run_id: d8dbe32e4e1b4896b8c29e37dfd42965
+run_name: industrious-pug-227
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1764976352189
+status: 3
+tags: []
+user_id: hp

@@ -1,0 +1,14 @@
+artifact_uri: file:///E:/Masters/MLOps/echo-ai/mlruns/136823257234928231/c0d551e36ae7463591f42356a68baae6/artifacts
+end_time: 1764896248441
+entry_point_name: ''
+experiment_id: '136823257234928231'
+lifecycle_stage: active
+run_id: c0d551e36ae7463591f42356a68baae6
+run_name: fortunate-colt-981
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1764896248372
+status: 3
+tags: []
+user_id: hp

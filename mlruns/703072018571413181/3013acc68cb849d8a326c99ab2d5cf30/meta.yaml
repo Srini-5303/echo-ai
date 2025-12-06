@@ -1,0 +1,14 @@
+artifact_uri: file:///E:/Masters/MLOps/echo-ai/mlruns/703072018571413181/3013acc68cb849d8a326c99ab2d5cf30/artifacts
+end_time: 1764870817322
+entry_point_name: ''
+experiment_id: '703072018571413181'
+lifecycle_stage: active
+run_id: 3013acc68cb849d8a326c99ab2d5cf30
+run_name: MultinomialNB_20251204_125333
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1764870813884
+status: 3
+tags: []
+user_id: hp

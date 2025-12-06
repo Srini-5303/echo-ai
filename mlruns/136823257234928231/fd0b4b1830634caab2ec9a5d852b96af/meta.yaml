@@ -1,0 +1,14 @@
+artifact_uri: file:///E:/Masters/MLOps/echo-ai/mlruns/136823257234928231/fd0b4b1830634caab2ec9a5d852b96af/artifacts
+end_time: 1764976353803
+entry_point_name: ''
+experiment_id: '136823257234928231'
+lifecycle_stage: active
+run_id: fd0b4b1830634caab2ec9a5d852b96af
+run_name: popular-smelt-944
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1764976353709
+status: 3
+tags: []
+user_id: hp

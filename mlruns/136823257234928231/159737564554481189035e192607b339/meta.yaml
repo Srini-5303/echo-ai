@@ -1,0 +1,14 @@
+artifact_uri: file:///E:/Masters/MLOps/echo-ai/mlruns/136823257234928231/159737564554481189035e192607b339/artifacts
+end_time: 1764896251518
+entry_point_name: ''
+experiment_id: '136823257234928231'
+lifecycle_stage: active
+run_id: 159737564554481189035e192607b339
+run_name: sincere-cow-25
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1764896251341
+status: 3
+tags: []
+user_id: hp

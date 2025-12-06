@@ -1,0 +1,14 @@
+artifact_uri: file:///E:/Masters/MLOps/echo-ai/mlruns/136823257234928231/f7f6fd97e9b54df392ead94751c20343/artifacts
+end_time: 1764976354173
+entry_point_name: ''
+experiment_id: '136823257234928231'
+lifecycle_stage: active
+run_id: f7f6fd97e9b54df392ead94751c20343
+run_name: aged-kit-219
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1764976354105
+status: 3
+tags: []
+user_id: hp

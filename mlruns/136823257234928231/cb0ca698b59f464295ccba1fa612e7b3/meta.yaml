@@ -1,0 +1,14 @@
+artifact_uri: file:///E:/Masters/MLOps/echo-ai/mlruns/136823257234928231/cb0ca698b59f464295ccba1fa612e7b3/artifacts
+end_time: 1764896248054
+entry_point_name: ''
+experiment_id: '136823257234928231'
+lifecycle_stage: active
+run_id: cb0ca698b59f464295ccba1fa612e7b3
+run_name: powerful-donkey-268
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1764896247971
+status: 3
+tags: []
+user_id: hp

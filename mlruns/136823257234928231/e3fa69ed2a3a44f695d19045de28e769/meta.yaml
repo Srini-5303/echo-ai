@@ -1,0 +1,14 @@
+artifact_uri: file:///E:/Masters/MLOps/echo-ai/mlruns/136823257234928231/e3fa69ed2a3a44f695d19045de28e769/artifacts
+end_time: 1764976353230
+entry_point_name: ''
+experiment_id: '136823257234928231'
+lifecycle_stage: active
+run_id: e3fa69ed2a3a44f695d19045de28e769
+run_name: unleashed-gnat-655
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1764976353169
+status: 3
+tags: []
+user_id: hp
