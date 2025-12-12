@@ -220,6 +220,60 @@ class ResponseGenerator:
         context_parts.append(f"Sentiment: {sentiment}")
         
         context = " | ".join(context_parts)
+
+        few_shot_examples = """
+Example 1:
+Review: "Good food and fast service!"
+Sentiment: positive
+Response: "Thank you for your feedback! We look forward to seeing you again!"
+
+Example 2:
+Review: "The staff were friendly and the food is tasty."
+Sentiment: positive
+Response: "Thank you! We're delighted to hear about your positive experience and look forward to serving you again soon!"
+
+Example 3:
+Review: "The best food I have ever had in my life, it was absolutely amazing."
+Sentiment: amazing
+Response: "We are absolutely thrilled by your amazing review! Your incredible feedback means everything to us!
+
+Example 4:
+Review: "The food and the staff were exceptional".
+Sentiment: amazing
+Response: "We are absolutely thrilled by your amazing review! Your feedback means everything to us, and we can't wait to exceed your expectations again."
+
+Example 5:
+Review: "The food was cold and the staff was rude."
+Sentiment: negative
+Response: "We're sorry to hear about your disappointing experience. This isn’t the level of service we strive for, and we’d appreciate the chance to make things right—please contact us directly."
+
+Example 6:
+Review: "The service was slow and the food was cold."
+Sentiment: negative
+Response: "We're sorry to hear about your disappointing experience. We will definetely improve our service and make sure that you have a better experience next time."
+
+Example 7:
+Review: "It was okay, nothing special."
+Sentiment: neutral
+Response: "Thank you for taking the time to share your feedback. We appreciate your input and will use it to improve our service."
+
+Example 8:
+Review: "I had a terrible experience here. The food was cold, the staff was rude."
+Sentiment: terrible 
+Response: "We are deeply sorry for the completely unacceptable experience you had. Please contact our management immediately so we can resolve this urgently."
+
+Example 9:
+Review: "I had the worst experience ever! Rude staff, dirty place, and horrible food. Never coming back!"
+Sentiment: terrible
+Response: "We are extremely sorry for your terrible experience you had at our restaurant. We will resolve this urgently."
+
+Example 10:
+Review: "It was a decent restaurant to have a cheap meal."
+Sentiment: neutral
+Response: "Thank you for your feedback. We value your input and will use it to improve our service."
+"""
+
+
         
         # Determine sentiment instructions
         if sentiment.lower() == 'amazing':
@@ -236,14 +290,13 @@ class ResponseGenerator:
         # Create prompt based on model type
         if 'flan' in self.model_name.lower():
             # Flan-T5 style prompt
-            prompt = f"""Generate a professional business response to this customer review.
+            prompt = f"""{few_shot_examples}
+
+Generate a professional business response to this customer review.
 Context: {context}
 {'Reviewer: ' + authorName if authorName else ''}
 Review: "{reviewText}"
-Instructions: Write a personalized, empathetic response that:
-1. Acknowledges the customer's feedback
-2. {sentiment_instruction}
-3. Is concise (2-3 sentences) and professional
+Instructions: Write a short personalized, empathetic response that acknowledges the customer's feedback, and answers with the following instructions {sentiment_instruction} and is concise (2-3 sentences), professional and most importantly NOT repetitive. Do not respond with a review, it should be a response for the review given by the user and do not generate the sentiment, that is already done by the sentiment analysis model.
 Response:"""
         
         elif 'mistral' in self.model_name.lower():
@@ -271,8 +324,8 @@ Professional Response:"""
                             provider: str = None, reviewRating: float = None,
                             authorName: str = None, reviewDate: str = None,
                             use_template: bool = True,
-                            max_length: int = 150,
-                            temperature: float = 0.7) -> str:
+                            max_length: int = 80,
+                            temperature: float = 0.4) -> str:
         """
         Generate a response to a review
         
@@ -308,7 +361,7 @@ Professional Response:"""
                     max_length=max_length,
                     temperature=temperature,
                     do_sample=True,
-                    top_p=0.9,
+                    top_p=0.92,
                     num_return_sequences=1
                 )
                 generated_text = result[0]['generated_text']
