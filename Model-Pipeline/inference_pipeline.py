@@ -531,7 +531,7 @@ def main():
             generate_responses=not args.no_response
         )
         
-        print(f"\n✅ Processed {len(df_results)} reviews from CSV")
+        print(f"\n Processed {len(df_results)} reviews from CSV")
         
     else:
         # Demo mode with your features
@@ -596,6 +596,7 @@ def main():
             
             if result['status'] == 'success':
                 sentiment = result['sentiment_analysis']['sentiment']
+                print(f" Sentiment: {sentiment.capitalize()}")
                 print(f" Confidence: {result['sentiment_analysis'].get('confidence', 0):.3f}")
                 if 'generated_response' in result:
                     print(f" Response: {result['generated_response']}")
